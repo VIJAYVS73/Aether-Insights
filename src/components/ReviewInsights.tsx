@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Star, ThumbsUp, ThumbsDown, CheckCircle2 } from 'lucide-react';
+=======
+import { Star, ThumbsUp, ThumbsDown } from 'lucide-react';
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
 import { motion } from 'motion/react';
 import type { ReviewInsightsData } from '../lib/flipkartData';
 
@@ -8,6 +12,7 @@ const defaultData: ReviewInsightsData = {
   totalReviews: 12402,
   sentimentScore: 84,
   reviews: [
+<<<<<<< HEAD
     { 
       id: 1, 
       user: 'Sarah J.', 
@@ -44,6 +49,11 @@ const defaultData: ReviewInsightsData = {
       helpfulCount: 45, 
       avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emily' 
     },
+=======
+    { id: 1, user: 'Sarah J.', rating: 5, comment: 'The battery life on these headphones is incredible.', sentiment: 'Positive', product: 'Ultra-Bass Wireless', date: '2 days ago' },
+    { id: 2, user: 'Michael R.', rating: 2, comment: 'Sound quality is good but uncomfortable for long sessions.', sentiment: 'Negative', product: 'Ultra-Bass Wireless', date: '4 days ago' },
+    { id: 3, user: 'Emily W.', rating: 4, comment: 'Great value. Noise cancellation is decent for the price.', sentiment: 'Positive', product: 'Smart-Fit Tracker', date: '1 week ago' },
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
   ],
 };
 
@@ -91,6 +101,7 @@ export const ReviewInsights: React.FC<ReviewInsightsProps> = ({ data, isLoading 
             <div key={review.id} className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all">
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-3">
+<<<<<<< HEAD
                   <div className="w-10 h-10 rounded-full border-2 border-white/10 overflow-hidden bg-white/5 flex items-center justify-center">
                     <img 
                       src={review.avatarUrl} 
@@ -108,6 +119,13 @@ export const ReviewInsights: React.FC<ReviewInsightsProps> = ({ data, isLoading 
                         </div>
                       )}
                     </div>
+=======
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-xs font-bold text-white">
+                    {review.user[0]}
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-white">{review.user}</p>
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
                     <p className="text-[10px] text-slate-500">{review.date} • {review.product}</p>
                   </div>
                 </div>
@@ -127,9 +145,15 @@ export const ReviewInsights: React.FC<ReviewInsightsProps> = ({ data, isLoading 
                   {review.sentiment}
                 </span>
                 <div className="flex items-center gap-3 ml-auto">
+<<<<<<< HEAD
                   <button className="text-slate-500 hover:text-emerald-400 transition-colors flex items-center gap-1.5 group">
                     <ThumbsUp className="w-3.5 h-3.5 group-hover:fill-emerald-400/20" />
                     <span className="text-[10px] font-bold">{review.helpfulCount} Helpful</span>
+=======
+                  <button className="text-slate-500 hover:text-emerald-400 transition-colors flex items-center gap-1">
+                    <ThumbsUp className="w-3 h-3" />
+                    <span className="text-[10px]">Helpful</span>
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
                   </button>
                   <button className="text-slate-500 hover:text-red-400 transition-colors">
                     <ThumbsDown className="w-3 h-3" />

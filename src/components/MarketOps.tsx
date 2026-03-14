@@ -5,7 +5,11 @@ import type { MarketOpsData } from '../lib/flipkartData';
 
 const defaultData: MarketOpsData = {
   topProductName: 'Electronics Leader',
+<<<<<<< HEAD
   topProductPrice: '₹9,999.00',
+=======
+  topProductPrice: '$129.99',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
   topProductCategory: 'Electronics',
   totalProducts: 4,
   avgRating: 4.5,

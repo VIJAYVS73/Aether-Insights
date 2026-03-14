@@ -9,30 +9,48 @@ import { DataTable } from './components/DataTable';
 import { ReviewInsights } from './components/ReviewInsights';
 import { MarketOps } from './components/MarketOps';
 import { Settings as SettingsView } from './components/Settings';
+<<<<<<< HEAD
 import { AutomationConsole } from './components/AutomationConsole';
 import {
   DollarSign,
   MessageCircle,
   Activity,
+=======
+import { 
+  DollarSign, 
+  MessageCircle, 
+  Activity, 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
   Target,
   Download,
   Calendar
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+<<<<<<< HEAD
 import { buildDashboardData, fetchRealTimeProducts } from './lib/flipkartData';
+=======
+import { buildDashboardData, fetchSubCategories } from './lib/flipkartData';
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('Dashboard');
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState('');
+<<<<<<< HEAD
   const [rawItems, setRawItems] = useState<any[]>([]);
   const [isLive, setIsLive] = useState(true);
   const [hasInitialLoaded, setHasInitialLoaded] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+=======
+  const [rawItems, setRawItems] = useState<Record<string, unknown>[]>([]);
+
+  const categoryId = (import.meta.env.VITE_FLIPKART_CATEGORY_ID as string | undefined) || 'clo';
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
 
   useEffect(() => {
     let mounted = true;
 
+<<<<<<< HEAD
     const loadMarketData = async (isBackground = false) => {
       if (!isBackground) setIsLoading(true);
       setLoadError('');
@@ -43,19 +61,37 @@ export default function App() {
         if (mounted) {
           setRawItems(items);
           if (!isBackground) setHasInitialLoaded(true);
+=======
+    const loadMarketData = async () => {
+      setIsLoading(true);
+      setLoadError('');
+
+      try {
+        const items = await fetchSubCategories(categoryId);
+        if (mounted) {
+          setRawItems(items);
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
         }
       } catch (error) {
         if (mounted) {
           setLoadError(error instanceof Error ? error.message : 'Failed to fetch market data.');
+<<<<<<< HEAD
           if (!isBackground) setRawItems([]);
         }
       } finally {
         if (mounted && !isBackground) {
+=======
+          setRawItems([]);
+        }
+      } finally {
+        if (mounted) {
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
           setIsLoading(false);
         }
       }
     };
 
+<<<<<<< HEAD
     if (!hasInitialLoaded) {
       loadMarketData();
     }
@@ -74,44 +110,78 @@ export default function App() {
   }, [isLive, hasInitialLoaded]);
 
   const dashboardData = useMemo(() => buildDashboardData(rawItems), [rawItems]);
+=======
+    loadMarketData();
+
+    return () => {
+      mounted = false;
+    };
+  }, [categoryId]);
+
+  const dashboardData = useMemo(() => buildDashboardData(rawItems, categoryId), [rawItems, categoryId]);
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
 
   const renderContent = () => {
     switch (activeTab) {
       case 'Dashboard':
         return (
+<<<<<<< HEAD
           <motion.div
+=======
+          <motion.div 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-8"
           >
             {/* Metric Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<<<<<<< HEAD
               <MetricCard
                 title="Price Changes"
+=======
+              <MetricCard 
+                title="Price Changes" 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
                 value={dashboardData.metrics.priceChanges.value}
                 change={dashboardData.metrics.priceChanges.change}
                 isPositive={dashboardData.metrics.priceChanges.isPositive}
                 icon={DollarSign}
                 color="blue"
               />
+<<<<<<< HEAD
               <MetricCard
                 title="Review Sentiment"
+=======
+              <MetricCard 
+                title="Review Sentiment" 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
                 value={dashboardData.metrics.reviewSentiment.value}
                 change={dashboardData.metrics.reviewSentiment.change}
                 isPositive={dashboardData.metrics.reviewSentiment.isPositive}
                 icon={MessageCircle}
                 color="emerald"
               />
+<<<<<<< HEAD
               <MetricCard
                 title="Competitor Activity"
+=======
+              <MetricCard 
+                title="Competitor Activity" 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
                 value={dashboardData.metrics.competitorActivity.value}
                 change={dashboardData.metrics.competitorActivity.change}
                 isPositive={dashboardData.metrics.competitorActivity.isPositive}
                 icon={Activity}
                 color="purple"
               />
+<<<<<<< HEAD
               <MetricCard
                 title="Market Opportunities"
+=======
+              <MetricCard 
+                title="Market Opportunities" 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
                 value={dashboardData.metrics.marketOpportunities.value}
                 change={dashboardData.metrics.marketOpportunities.change}
                 isPositive={dashboardData.metrics.marketOpportunities.isPositive}
@@ -148,7 +218,11 @@ export default function App() {
         );
       case 'Competitor Intel':
         return (
+<<<<<<< HEAD
           <motion.div
+=======
+          <motion.div 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-8"
@@ -162,7 +236,11 @@ export default function App() {
         );
       case 'Price Monitoring':
         return (
+<<<<<<< HEAD
           <motion.div
+=======
+          <motion.div 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-8"
@@ -176,7 +254,11 @@ export default function App() {
         );
       case 'Review Insights':
         return (
+<<<<<<< HEAD
           <motion.div
+=======
+          <motion.div 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -185,7 +267,11 @@ export default function App() {
         );
       case 'Market Ops':
         return (
+<<<<<<< HEAD
           <motion.div
+=======
+          <motion.div 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -194,7 +280,11 @@ export default function App() {
         );
       case 'Alerts':
         return (
+<<<<<<< HEAD
           <motion.div
+=======
+          <motion.div 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl"
@@ -204,7 +294,11 @@ export default function App() {
         );
       case 'Settings':
         return (
+<<<<<<< HEAD
           <motion.div
+=======
+          <motion.div 
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -219,16 +313,24 @@ export default function App() {
   return (
     <div className="flex min-h-screen bg-bg-dark">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+<<<<<<< HEAD
 
       <main className="flex-1 flex flex-col min-w-0">
         <TopNav />
 
+=======
+      
+      <main className="flex-1 flex flex-col min-w-0">
+        <TopNav />
+        
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
         <div className="flex-1 p-8 space-y-8 overflow-y-auto custom-scrollbar">
           {/* Header Section */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <h1 className="text-3xl font-display font-bold text-white tracking-tight">{activeTab}</h1>
               <p className="text-slate-400 mt-1">
+<<<<<<< HEAD
                 {activeTab === 'Dashboard' ? 'Real-time competitive analysis and market signals.' :
                   activeTab === 'Settings' ? 'Manage your account and notification preferences.' :
                     `Detailed analysis and monitoring for ${activeTab.toLowerCase()}.`}
@@ -236,10 +338,20 @@ export default function App() {
               {loadError && (
                 <p className="mt-2 text-xs text-amber-400">
                   {loadError}
+=======
+                {activeTab === 'Dashboard' ? 'Real-time competitive analysis and market signals.' : 
+                 activeTab === 'Settings' ? 'Manage your account and notification preferences.' :
+                 `Detailed analysis and monitoring for ${activeTab.toLowerCase()}.`}
+              </p>
+              {loadError && (
+                <p className="mt-2 text-xs text-amber-400">
+                  {loadError} Ensure RAPIDAPI_KEY is set in .env.local and restart npm run dev.
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
                 </p>
               )}
             </div>
             <div className="flex items-center gap-3">
+<<<<<<< HEAD
               <button 
                 onClick={() => setIsLive(!isLive)}
                 className={`flex items-center gap-2 px-4 py-2 border rounded-xl text-sm font-semibold transition-all ${
@@ -251,10 +363,13 @@ export default function App() {
                 <Activity className={`w-4 h-4 ${isLive ? 'animate-pulse' : ''}`} />
                 {isLive ? 'Stop Live Stream' : 'Start Live Stream'}
               </button>
+=======
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
               <button className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm font-semibold text-white hover:bg-white/10 transition-all">
                 <Calendar className="w-4 h-4" />
                 Last 30 Days
               </button>
+<<<<<<< HEAD
               <button 
                 onClick={() => {
                   setIsExporting(true);
@@ -269,6 +384,11 @@ export default function App() {
               >
                 <Download className={`w-4 h-4 ${isExporting ? 'animate-bounce' : ''}`} />
                 {isExporting ? 'Generating Report...' : 'Export'}
+=======
+              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-xl text-sm font-bold text-white hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20">
+                <Download className="w-4 h-4" />
+                Export
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
               </button>
             </div>
           </div>
@@ -278,8 +398,11 @@ export default function App() {
           </AnimatePresence>
         </div>
       </main>
+<<<<<<< HEAD
 
       <AutomationConsole isLive={isLive} productCount={rawItems.length} />
+=======
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     </div>
   );
 }

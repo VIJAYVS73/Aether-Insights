@@ -7,7 +7,11 @@ const defaultProducts: ProductRow[] = [
     id: 1,
     name: 'Ultra-Bass Wireless Headphones',
     category: 'Electronics',
+<<<<<<< HEAD
     price: '₹9,999.00',
+=======
+    price: '$129.99',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     stock: 'High',
     rating: 4.8,
     reviews: 1240,
@@ -20,7 +24,11 @@ const defaultProducts: ProductRow[] = [
     id: 2,
     name: 'Ergo-Click Mechanical Keyboard',
     category: 'Accessories',
+<<<<<<< HEAD
     price: '₹6,499.00',
+=======
+    price: '$89.50',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     stock: 'Medium',
     rating: 4.5,
     reviews: 850,
@@ -33,7 +41,11 @@ const defaultProducts: ProductRow[] = [
     id: 3,
     name: 'Pro-Vision VR Headset',
     category: 'Electronics',
+<<<<<<< HEAD
     price: '₹34,999.00',
+=======
+    price: '$499.00',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     stock: 'Low',
     rating: 4.9,
     reviews: 320,
@@ -46,7 +58,11 @@ const defaultProducts: ProductRow[] = [
     id: 4,
     name: 'Smart-Fit Fitness Tracker',
     category: 'Wearables',
+<<<<<<< HEAD
     price: '₹4,999.00',
+=======
+    price: '$59.99',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     stock: 'High',
     rating: 4.2,
     reviews: 2100,

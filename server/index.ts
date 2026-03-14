@@ -31,27 +31,168 @@ app.get('/health', (_req: Request, res: Response) => {
   res.json({ ok: true, service: 'unified-rapidapi-backend' });
 });
 
+<<<<<<< HEAD
 app.get('/api/market/products', async (_req: Request, res: Response) => {
   try {
     const upstream = await fetch('https://dummyjson.com/products?limit=100');
+=======
+app.get('/api/amazon/product-details', async (req: Request, res: Response) => {
+  const apiKey = process.env.RAPIDAPI_KEY;
+  const host = process.env.AMAZON_RAPIDAPI_HOST || 'real-time-amazon-data.p.rapidapi.com';
+  const asin = String(req.query.asin || process.env.AMAZON_DEFAULT_ASIN || 'B07ZPKBL9V');
+  const country = String(req.query.country || process.env.AMAZON_DEFAULT_COUNTRY || 'US');
+
+  if (!apiKey) {
+    return res.status(500).json({
+      error: 'Missing RAPIDAPI_KEY in environment.',
+    });
+  }
+
+  const url = `https://${host}/product-details?asin=${encodeURIComponent(asin)}&country=${encodeURIComponent(country)}`;
+
+  try {
+    const upstream = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': host,
+        'Content-Type': 'application/json',
+      },
+    });
+
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     const payload = await upstream.json().catch(() => ({}));
 
     if (!upstream.ok) {
       return res.status(upstream.status).json({
+<<<<<<< HEAD
         error: 'Failed to fetch from DummyJSON',
+=======
+        error: 'RapidAPI request failed',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
         details: payload,
       });
     }
 
     return res.json(payload);
   } catch (error) {
+<<<<<<< HEAD
     console.error('Fetching real-time products failed:', error);
     return res.status(502).json({
       error: 'Failed to fetch products',
+=======
+    return res.status(502).json({
+      error: 'Failed to reach RapidAPI endpoint',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
       details: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 });
+<<<<<<< HEAD
+=======
+
+app.get('/api/flipkart/sub-categories', async (req: Request, res: Response) => {
+  const apiKey = process.env.RAPIDAPI_KEY;
+  const flipkartHost = process.env.FLIPKART_RAPIDAPI_HOST || 'real-time-flipkart-data2.p.rapidapi.com';
+  const amazonHost = process.env.AMAZON_RAPIDAPI_HOST || 'real-time-amazon-data.p.rapidapi.com';
+  const categoryId = String(req.query.categoryId || process.env.VITE_FLIPKART_CATEGORY_ID || 'clo');
+
+  if (!apiKey) {
+    return res.status(500).json({
+      error: 'Missing RAPIDAPI_KEY in environment.',
+    });
+  }
+
+  const flipkartUrl = `https://${flipkartHost}/sub-categories?categoryId=${encodeURIComponent(categoryId)}`;
+
+  try {
+    const upstream = await fetch(flipkartUrl, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': flipkartHost,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const payload = await upstream.json().catch(() => ({}));
+
+    if (upstream.ok) {
+      return res.json(payload);
+    }
+
+    // Flipkart may be unavailable for some RapidAPI plans; fallback to Amazon data so UI still has live API data.
+    const fallbackAsin = process.env.AMAZON_DEFAULT_ASIN || 'B07ZPKBL9V';
+    const fallbackCountry = process.env.AMAZON_DEFAULT_COUNTRY || 'US';
+    const amazonUrl = `https://${amazonHost}/product-details?asin=${encodeURIComponent(fallbackAsin)}&country=${encodeURIComponent(fallbackCountry)}`;
+
+    const amazonResponse = await fetch(amazonUrl, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': amazonHost,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const amazonPayload = await amazonResponse.json().catch(() => ({}));
+    if (!amazonResponse.ok) {
+      return res.status(upstream.status).json({
+        error: 'RapidAPI request failed',
+        details: payload,
+      });
+    }
+
+    const amazonData =
+      amazonPayload && typeof amazonPayload === 'object'
+        ? (amazonPayload as Record<string, unknown>).data
+        : null;
+
+    return res.json({
+      source: 'amazon-fallback',
+      data: [
+        {
+          name:
+            amazonData && typeof amazonData === 'object' && typeof (amazonData as Record<string, unknown>).product_title === 'string'
+              ? (amazonData as Record<string, unknown>).product_title
+              : 'Amazon Product',
+          categoryName:
+            amazonData && typeof amazonData === 'object' && typeof (amazonData as Record<string, unknown>).country === 'string'
+              ? `Amazon ${(amazonData as Record<string, unknown>).country as string}`
+              : 'Amazon',
+          price:
+            amazonData && typeof amazonData === 'object' && typeof (amazonData as Record<string, unknown>).product_price === 'string'
+              ? (amazonData as Record<string, unknown>).product_price
+              : '$199.99',
+          rating:
+            amazonData && typeof amazonData === 'object' && typeof (amazonData as Record<string, unknown>).product_star_rating === 'string'
+              ? (amazonData as Record<string, unknown>).product_star_rating
+              : '4.3',
+          productCount:
+            amazonData && typeof amazonData === 'object' && typeof (amazonData as Record<string, unknown>).product_num_ratings === 'number'
+              ? (amazonData as Record<string, unknown>).product_num_ratings
+              : 850,
+          imageUrl:
+            amazonData && typeof amazonData === 'object' && typeof (amazonData as Record<string, unknown>).product_photo === 'string'
+              ? (amazonData as Record<string, unknown>).product_photo
+              : 'https://picsum.photos/seed/amazon-fallback/40/40',
+          url:
+            amazonData && typeof amazonData === 'object' && typeof (amazonData as Record<string, unknown>).product_url === 'string'
+              ? (amazonData as Record<string, unknown>).product_url
+              : 'https://www.amazon.com',
+        },
+      ],
+      flipkartError: payload,
+    });
+  } catch (error) {
+    return res.status(502).json({
+      error: 'Failed to reach RapidAPI endpoint',
+      details: error instanceof Error ? error.message : 'Unknown error',
+    });
+  }
+});
+
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
 async function startServer() {
   if (isDev) {
     const vite = await createViteServer({

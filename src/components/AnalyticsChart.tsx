@@ -32,7 +32,11 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           <div key={index} className="flex items-center gap-2 text-sm">
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color }} />
             <span className="text-slate-400">{entry.name}:</span>
+<<<<<<< HEAD
             <span className="text-white font-mono">₹{entry.value}</span>
+=======
+            <span className="text-white font-mono">${entry.value}</span>
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
           </div>
         ))}
       </div>
@@ -75,7 +79,11 @@ export const AnalyticsChart: React.FC<AnalyticsChartProps> = ({ series, isLoadin
             axisLine={false} 
             tickLine={false} 
             tick={{ fill: '#64748b', fontSize: 12 }} 
+<<<<<<< HEAD
             tickFormatter={(value) => `₹${value}`}
+=======
+            tickFormatter={(value) => `$${value}`}
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
           />
           <Tooltip content={<CustomTooltip />} />
           <Area 

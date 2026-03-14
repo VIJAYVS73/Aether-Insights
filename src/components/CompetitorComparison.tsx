@@ -7,7 +7,11 @@ const defaultCompetitors: CompetitorRow[] = [
   {
     name: 'SwiftCart Pro',
     logo: 'https://picsum.photos/seed/comp1/40/40',
+<<<<<<< HEAD
     price: '₹9,999.00',
+=======
+    price: '$129.99',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     priceChange: '+4.2%',
     rating: '4.2',
     sentiment: 'Positive',
@@ -17,7 +21,11 @@ const defaultCompetitors: CompetitorRow[] = [
   {
     name: 'MegaStore X',
     logo: 'https://picsum.photos/seed/comp2/40/40',
+<<<<<<< HEAD
     price: '₹8,499.00',
+=======
+    price: '$115.50',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     priceChange: '-2.1%',
     rating: '3.9',
     sentiment: 'Neutral',
@@ -27,7 +35,11 @@ const defaultCompetitors: CompetitorRow[] = [
   {
     name: 'Elite Goods',
     logo: 'https://picsum.photos/seed/comp3/40/40',
+<<<<<<< HEAD
     price: '₹11,999.00',
+=======
+    price: '$145.00',
+>>>>>>> d81990d91b7f7e9c92989988d1d89676b3603531
     priceChange: '+0.5%',
     rating: '4.8',
     sentiment: 'Very Positive',
