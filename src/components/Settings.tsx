@@ -16,7 +16,7 @@ export const Settings = () => {
           </div>
           <div className="space-y-2">
             <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
-            <input type="email" defaultValue="alex.rivera@intellectai.com" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500/50" />
+            <input type="email" defaultValue="alex.rivera@aetherinsights.com" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500/50" />
           </div>
         </div>
       </div>

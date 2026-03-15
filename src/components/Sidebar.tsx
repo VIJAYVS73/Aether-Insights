@@ -34,7 +34,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
             <Zap className="text-white w-6 h-6" />
           </div>
-          <span className="font-display font-bold text-xl tracking-tight text-white">Intellect<span className="text-blue-500">AI</span></span>
+          <span className="font-display font-bold text-xl tracking-tight text-white">AETHER <span className="text-blue-500">INSIGHTS</span></span>
         </div>
       </div>
 
