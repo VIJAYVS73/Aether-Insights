@@ -9,7 +9,6 @@ import { DataTable } from './components/DataTable';
 import { ReviewInsights } from './components/ReviewInsights';
 import { MarketOps } from './components/MarketOps';
 import { Settings as SettingsView } from './components/Settings';
-import { AutomationConsole } from './components/AutomationConsole';
 import { DateRangeSelector } from './components/DateRangeSelector';
 import { HighDemandProducts } from './components/HighDemandProducts';
 import { GeoDemandAlerts } from './components/GeoDemandAlerts';
@@ -338,7 +337,7 @@ export default function App() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.1 }}
-                      className="p-4 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-white/10"
+                      className="p-4 rounded-lg bg-linear-to-br from-blue-500/10 to-purple-500/10 border border-white/10"
                     >
                       <p className="text-sm text-slate-400 mb-2 truncate">{price.name}</p>
                       <div className="flex items-baseline gap-2 mb-2">
@@ -469,8 +468,6 @@ export default function App() {
           </AnimatePresence>
         </div>
       </main>
-
-      <AutomationConsole isLive={isLive} productCount={rawItems.length} />
 
       <DateRangeSelector
         isOpen={showDateRangeSelector}
